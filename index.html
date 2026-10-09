@@ -3,64 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naufal Zam Zami | Tech & Robotics</title>
-    <!-- Font bergaya futuristik dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>Naufal Zam Zami | Cyber & Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigasi -->
-    <nav class="navbar">
-        <div class="logo">NZ_SYS//</div>
+    <!-- Navigasi Game-Style -->
+    <nav class="navbar animate-fade-in">
+        <div class="logo">
+            <span class="pulse-dot"></span> NZ_SYS//
+        </div>
         <ul class="nav-links">
-            <li><a href="#about">INIT</a></li>
-            <li><a href="#projects">MODULES</a></li>
-            <li><a href="#contact">PING</a></li>
+            <li><a href="#init" class="cyber-link">INIT</a></li>
+            <li><a href="#projects" class="cyber-link">MODULES</a></li>
+            <li><a href="#squad" class="cyber-link">SQUAD</a></li>
+            <li><span class="status-online">ONLINE <span class="blink">●</span></span></li>
         </ul>
     </nav>
 
-    <!-- Bagian Utama (Hero) -->
-    <header class="hero">
-        <div class="hero-content">
-            <p class="system-msg">>> System booting... Welcome.</p>
-            <h1 class="glitch" data-text="NAUFAL ZAM ZAMI">NAUFAL ZAM ZAMI</h1>
-            <h2 class="role">Tech Enthusiast | Gamer | Robotics Builder</h2>
-            <p class="description">Menggabungkan logika, kode, dan perangkat keras untuk membangun masa depan.</p>
-            <a href="#projects" class="btn-neon">ACCESS_PROJECTS</a>
+    <!-- Bagian Hero -->
+    <header id="init" class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <p class="system-msg">>> SESSION_ACTIVE // WELCOME TO THE GRID</p>
+                <h1 class="glitch" data-text="NAUFAL ZAM ZAMI">NAUFAL ZAM ZAMI</h1>
+                <h2 class="role">CYBERNETIC DEVELOPER | ROBOTICS BUILDER</h2>
+                <p class="description">
+                    Menggabungkan logika, kode, dan perangkat keras untuk membangun masa depan di bidang robotika, game development, dan teknologi imersif.
+                </p>
+                
+                <!-- Stat Status Bar Ala Game -->
+                <div class="status-box">
+                    <div class="stat-row">
+                        <span class="stat-label">HP</span>
+                        <div class="stat-bar"><div class="stat-fill hp" style="width: 90%;"></div></div>
+                        <span class="stat-val">90%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">RAM</span>
+                        <div class="stat-bar"><div class="stat-fill ram" style="width: 80%;"></div></div>
+                        <span class="stat-val">80%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">CPU</span>
+                        <div class="stat-bar"><div class="stat-fill cpu" style="width: 70%;"></div></div>
+                        <span class="stat-val">70%</span>
+                    </div>
+                </div>
+
+                <a href="#projects" class="btn-neon">LAUNCH_SYSTEM</a>
+            </div>
+
+            <!-- Karakter / Squad Panel (Sisi Kanan) -->
+            <div id="squad" class="hero-right">
+                <h3 class="panel-title">ACTIVE_SQUAD</h3>
+                <div class="characters-grid">
+                    <!-- Karakter 1: Drone AI -->
+                    <div class="char-card blue">
+                        <div class="char-avatar-wrapper">
+                            <!-- Anda bisa ganti src dengan ilustrasi/foto Anda -->
+                            <div class="char-icon drone-anim">🤖</div>
+                        </div>
+                        <div class="char-info">
+                            <h4>AI Companion (NZ-01)</h4>
+                            <p class="role-tag">DRONE ASSISTANT</p>
+                        </div>
+                    </div>
+
+                    <!-- Karakter 2: Robot Mech -->
+                    <div class="char-card orange">
+                        <div class="char-avatar-wrapper">
+                            <div class="char-icon mech-anim">⚙️</div>
+                        </div>
+                        <div class="char-info">
+                            <h4>The Mech (ROB-SYS)</h4>
+                            <p class="role-tag">HEAVY HARDWARE</p>
+                        </div>
+                    </div>
+
+                    <!-- Karakter 3: Human Pilot (User) -->
+                    <div class="char-card purple">
+                        <div class="char-avatar-wrapper">
+                            <div class="char-icon cyber-anim">😎</div>
+                        </div>
+                        <div class="char-info">
+                            <h4>The Cyber-Pilot</h4>
+                            <p class="role-tag">HUMAN OPERATOR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Bagian Proyek -->
+    <!-- Bagian Proyek (Modules) -->
     <section id="projects" class="projects-section">
-        <h2 class="section-title">SYSTEM_MODULES_</h2>
+        <div class="section-header">
+            <h2 class="section-title">MODULE_PROGRESS // PROJECTS</h2>
+            <span class="badge">SYSTEM READY</span>
+        </div>
+        
         <div class="grid-container">
-            <!-- Kartu Proyek 1 -->
-            <div class="card">
-                <div class="card-tech">PYTHON / AI</div>
-                <h3>Automasi Robotik</h3>
-                <p>Pengembangan sistem navigasi mandiri menggunakan sensor ultrasonik dan algoritma pencarian jalur.</p>
-                <a href="#" class="card-link">>> Buka Repository</a>
+            <!-- Proyek 1: Robotic -->
+            <div class="card robotic">
+                <div class="card-glow"></div>
+                <div class="card-badge">C++ / PYTHON</div>
+                <div class="card-icon">🤖</div>
+                <h3>ROBOTIC COMPANION</h3>
+                <p>Pengembangan sistem navigasi mandiri menggunakan sensor ultrasonik dan sistem kontrol mikro Arduino/ROS.</p>
+                <div class="progress-bar-small"><div class="progress-fill" style="width: 85%;"></div></div>
+                <span class="progress-text">STATUS: ACTIVE 85%</span>
+                <a href="#" class="card-link">>> OPEN_FILE</a>
             </div>
-            <!-- Kartu Proyek 2 -->
-            <div class="card">
-                <div class="card-tech">C++ / UNREAL</div>
-                <h3>Cyber-Arena Game</h3>
-                <p>Prototipe game arena multiplayer dengan mekanik pergerakan cepat dan desain level futuristik.</p>
-                <a href="#" class="card-link">>> Buka Repository</a>
+
+            <!-- Proyek 2: Game Cyber -->
+            <div class="card gaming">
+                <div class="card-glow"></div>
+                <div class="card-badge">UNREAL / C#</div>
+                <div class="card-icon">🎮</div>
+                <h3>CYBERARENA RPG</h3>
+                <p>Prototipe game arena multiplayer dengan mekanik pergerakan cepat dan visual cyberpunk neon.</p>
+                <div class="progress-bar-small"><div class="progress-fill" style="width: 95%;"></div></div>
+                <span class="progress-text">STATUS: ACTIVE 95%</span>
+                <a href="#" class="card-link">>> OPEN_FILE</a>
             </div>
-             <!-- Kartu Proyek 3 -->
-             <div class="card">
-                <div class="card-tech">JS / IOT</div>
-                <h3>Smart Rig Dashboard</h3>
-                <p>Antarmuka web untuk memantau suhu dan performa PC Gaming secara real-time via mikrokontroler.</p>
-                <a href="#" class="card-link">>> Buka Repository</a>
+
+            <!-- Proyek 3: IoT -->
+            <div class="card iot">
+                <div class="card-glow"></div>
+                <div class="card-badge">JS / ESP32</div>
+                <div class="card-icon">⚡</div>
+                <h3>SMART RIG DASHBOARD</h3>
+                <p>Antarmuka web real-time untuk memantau suhu, watt, dan performa PC Gaming menggunakan mikrokontroler.</p>
+                <div class="progress-bar-small"><div class="progress-fill" style="width: 70%;"></div></div>
+                <span class="progress-text">STATUS: TESTING 70%</span>
+                <a href="#" class="card-link">>> OPEN_FILE</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>STATUS: ONLINE | TERMINAL SESSION CLOSED.</p>
+        <div class="footer-content">
+            <p>SYSTEM STATUS: <span class="neon-green">ONLINE</span> | USER SESSION: NAUFAL_ZAM_ZAMI</p>
+            <p class="copyright">© 2026 NZ_SYS. ALL RIGHTS RESERVED.</p>
+        </div>
     </footer>
 </body>
 </html>
