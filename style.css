@@ -535,3 +535,102 @@ footer {
         font-size: 2.8rem;
     }
 }
+/* --- TAMBAHAN UNTUK UPGRADE VISUAL KE CONCEPT ART --- */
+
+/* Latar belakang gaya Matrix/Angka seperti di desain */
+body::before {
+    content: "01001100 01101111 01100111 01101001 01100011 00100000 01000101 01111000 01100101 01100011 01110101 01110100 01100101 01100100 00100000 00111010 00101101 00101001";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    color: rgba(0, 240, 255, 0.03);
+    font-family: var(--font-code);
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-all;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Mengubah bingkai foto avatar karakter */
+.char-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.char-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Mengubah Gambar Thumbnail Proyek */
+.project-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    /* Clip path untuk sudut gambar proyek */
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* --- EFEK SUDUT TERPOTONG (SCI-FI CORNERS) --- */
+.sci-fi-border {
+    position: relative;
+    background: linear-gradient(135deg, rgba(5,7,15,0.9) 0%, rgba(20,25,40,0.8) 100%);
+    border: none !important;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    padding: 20px;
+}
+
+/* Membuat border neon buatan untuk bentuk yang sudah diclip */
+.sci-fi-border::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: currentColor; 
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+.sci-fi-border::after {
+    content: '';
+    position: absolute;
+    top: 1px; left: 1px; right: 1px; bottom: 1px;
+    z-index: -1;
+    background: #05070f;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+
+/* Mengaplikasikan pewarnaan border sci-fi */
+.char-card.blue { color: var(--neon-cyan); }
+.char-card.orange { color: var(--neon-orange); }
+.char-card.purple { color: var(--neon-purple); }
+
+/* Sci-fi panel untuk proyek */
+.sci-fi-panel {
+    border: none !important;
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+    background: rgba(10, 15, 25, 0.6);
+}
+.sci-fi-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+.sci-fi-panel::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    z-index: -1;
+    background: #0b0c10;
+    clip-path: polygon(19px 0, 100% 0, 100% calc(100% - 19px), calc(100% - 19px) 100%, 0 100%, 0 19px);
+}
+
+.card.robotic::before { background: var(--neon-orange); }
+.card.gaming::before { background: var(--neon-pink); }
+.card.iot::before { background: var(--neon-cyan); }
