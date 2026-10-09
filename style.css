@@ -1,9 +1,13 @@
-/* Variabel Warna Tema Cyberpunk/Gaming */
+/* Variabel Warna Multi-Color Cyberpunk/Gaming */
 :root {
-    --bg-color: #0b0c10;
+    --bg-color: #05070f;
     --text-main: #c5c6c7;
-    --neon-cyan: #66fcf1;
-    --neon-dark: #45a29e;
+    --neon-cyan: #00f0ff;
+    --neon-purple: #bd00ff;
+    --neon-orange: #ffaa00;
+    --neon-pink: #ff007f;
+    --border-dark: rgba(0, 240, 255, 0.15);
+    
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Rajdhani', sans-serif;
     --font-code: 'Share Tech Mono', monospace;
@@ -16,125 +20,357 @@
     scroll-behavior: smooth;
 }
 
+/* Background grid digital yang bergerak */
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-family: var(--font-body);
+    overflow-x: hidden;
     background-image: 
-        linear-gradient(rgba(11, 12, 16, 0.9), rgba(11, 12, 16, 0.9)),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(102, 252, 241, 0.05) 2px, rgba(102, 252, 241, 0.05) 4px);
+        linear-gradient(rgba(5, 7, 15, 0.95), rgba(5, 7, 15, 0.95)),
+        linear-gradient(90deg, rgba(189, 0, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(189, 0, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
 }
 
 /* Navigasi */
 .navbar {
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px;
-    background: rgba(11, 12, 16, 0.95);
-    border-bottom: 1px solid var(--neon-dark);
+    align-items: center;
+    padding: 15px 8%;
+    background: rgba(5, 7, 15, 0.9);
+    border-bottom: 2px solid var(--neon-purple);
+    box-shadow: 0 0 15px rgba(189, 0, 255, 0.2);
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .logo {
     font-family: var(--font-code);
     color: var(--neon-cyan);
     font-size: 1.5rem;
-    font-weight: bold;
-    text-shadow: 0 0 5px var(--neon-cyan);
+    font-weight: 900;
+    text-shadow: 0 0 10px var(--neon-cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-cyan);
+    animation: pulse 1.5s infinite;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 25px;
 }
 
 .nav-links a {
     color: var(--text-main);
     text-decoration: none;
     font-family: var(--font-code);
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1rem;
     transition: 0.3s;
+    border: 1px solid transparent;
+    padding: 5px 12px;
 }
 
 .nav-links a:hover {
     color: var(--neon-cyan);
-    text-shadow: 0 0 8px var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.05);
 }
 
-/* Hero Section */
+.status-online {
+    font-family: var(--font-code);
+    color: #39ff14;
+    background: rgba(57, 255, 20, 0.1);
+    border: 1px solid #39ff14;
+    padding: 3px 10px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+.blink {
+    animation: blink 1s steps(2, start) infinite;
+}
+
+/* Layout Utama Hero (split 2 kolom) */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 120px 8% 50px 8%;
     display: flex;
     align-items: center;
-    padding: 0 10%;
-    margin-top: 50px;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    width: 100%;
 }
 
 .system-msg {
     font-family: var(--font-code);
-    color: var(--neon-dark);
-    margin-bottom: 15px;
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 3.8rem;
     color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 15px;
+    position: relative;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Teks glitch */
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--neon-pink);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--neon-cyan);
+    clip: rect(85px, 450px, 140px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
 }
 
 .role {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--neon-cyan);
+    font-family: var(--font-heading);
     margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
 }
 
 .description {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-bottom: 40px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
-/* Tombol Neon */
-.btn-neon {
-    display: inline-block;
-    padding: 15px 30px;
-    color: var(--neon-cyan);
-    text-decoration: none;
+/* Status Interface (Sisi Kiri) */
+.status-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--neon-cyan);
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stat-row:last-child { margin-bottom: 0; }
+
+.stat-label {
     font-family: var(--font-code);
-    font-size: 1.2rem;
-    border: 2px solid var(--neon-cyan);
-    background: transparent;
-    text-transform: uppercase;
-    transition: 0.3s;
-    position: relative;
+    width: 45px;
+    color: #fff;
+}
+
+.stat-bar {
+    flex-grow: 1;
+    height: 8px;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 15px;
     overflow: hidden;
 }
 
-.btn-neon:hover {
-    background: var(--neon-cyan);
-    color: var(--bg-color);
-    box-shadow: 0 0 15px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+.stat-fill {
+    height: 100%;
+    box-shadow: 0 0 10px currentColor;
+}
+.stat-fill.hp { background: var(--neon-pink); color: var(--neon-pink); }
+.stat-fill.ram { background: var(--neon-purple); color: var(--neon-purple); }
+.stat-fill.cpu { background: var(--neon-cyan); color: var(--neon-cyan); }
+
+.stat-val {
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+    width: 40px;
+    text-align: right;
 }
 
-/* Projects Section */
+/* Tombol */
+.btn-neon {
+    display: inline-block;
+    padding: 15px 35px;
+    color: var(--neon-orange);
+    text-decoration: none;
+    font-family: var(--font-code);
+    font-weight: 900;
+    font-size: 1.2rem;
+    border: 2px solid var(--neon-orange);
+    background: rgba(255, 170, 0, 0.05);
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: inset 0 0 5px rgba(255, 170, 0, 0.1);
+}
+
+.btn-neon:hover {
+    background: var(--neon-orange);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon-orange);
+    transform: scale(1.02);
+}
+
+/* Karakter & Squad (Sisi Kanan) */
+.panel-title {
+    font-family: var(--font-heading);
+    color: var(--neon-orange);
+    text-shadow: 0 0 5px var(--neon-orange);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--neon-orange);
+    padding-bottom: 5px;
+}
+
+.characters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.char-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-dark);
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.char-card:hover {
+    transform: translateX(10px);
+}
+
+.char-avatar-wrapper {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-right: 15px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.char-info h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.role-tag {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    margin-top: 3px;
+}
+
+/* Warna-warni Karakter */
+.char-card.blue { border-color: var(--neon-cyan); }
+.char-card.blue .char-avatar-wrapper { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+.char-card.blue .role-tag { color: var(--neon-cyan); }
+
+.char-card.orange { border-color: var(--neon-orange); }
+.char-card.orange .char-avatar-wrapper { border-color: var(--neon-orange); box-shadow: 0 0 15px rgba(255, 170, 0, 0.4); }
+.char-card.orange .role-tag { color: var(--neon-orange); }
+
+.char-card.purple { border-color: var(--neon-purple); }
+.char-card.purple .char-avatar-wrapper { border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(189, 0, 255, 0.4); }
+.char-card.purple .role-tag { color: var(--neon-purple); }
+
+/* Animasi Maskot/Karakter */
+.drone-anim { animation: droneFly 3s ease-in-out infinite; }
+.mech-anim { animation: mechGlow 2.5s infinite alternate; }
+.cyber-anim { animation: cyberFloat 4s ease-in-out infinite; }
+
+@keyframes droneFly {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(5deg); }
+}
+@keyframes mechGlow {
+    0% { filter: drop-shadow(0 0 2px var(--neon-orange)); }
+    100% { filter: drop-shadow(0 0 8px var(--neon-orange)) contrast(1.2); }
+}
+@keyframes cyberFloat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08) rotate(-3deg); }
+}
+
+/* Bagian Modules/Proyek */
 .projects-section {
-    padding: 100px 10%;
+    padding: 80px 8%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .section-title {
     font-family: var(--font-heading);
     color: #fff;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    border-left: 5px solid var(--neon-cyan);
+    font-size: 2.2rem;
+    border-left: 5px solid var(--neon-purple);
     padding-left: 15px;
+    text-shadow: 0 0 8px rgba(189, 0, 255, 0.4);
+}
+
+.badge {
+    font-family: var(--font-code);
+    background: var(--neon-pink);
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px var(--neon-pink);
 }
 
 .grid-container {
@@ -143,54 +379,159 @@ h1 {
     gap: 30px;
 }
 
-/* Kartu Proyek */
+/* Card Proyek */
 .card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(102, 252, 241, 0.2);
+    background: rgba(5, 7, 15, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 30px;
-    transition: 0.4s;
     position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+}
+
+.card-glow {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3px;
+    transition: 0.4s;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 20px rgba(102, 252, 241, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
 }
 
-.card-tech {
+/* Custom warna per card */
+.card.robotic { border-color: rgba(255, 170, 0, 0.2); }
+.card.robotic .card-glow { background: var(--neon-orange); }
+.card.robotic:hover { border-color: var(--neon-orange); box-shadow: 0 0 25px rgba(255, 170, 0, 0.25); }
+
+.card.gaming { border-color: rgba(255, 0, 127, 0.2); }
+.card.gaming .card-glow { background: var(--neon-pink); }
+.card.gaming:hover { border-color: var(--neon-pink); box-shadow: 0 0 25px rgba(255, 0, 127, 0.25); }
+
+.card.iot { border-color: rgba(0, 240, 255, 0.2); }
+.card.iot .card-glow { background: var(--neon-cyan); }
+.card.iot:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.25); }
+
+.card-badge {
     font-family: var(--font-code);
-    color: var(--neon-dark);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    margin-bottom: 15px;
+}
+
+.card-icon {
+    font-size: 2.5rem;
     margin-bottom: 15px;
 }
 
 .card h3 {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
     color: #fff;
-    margin-bottom: 15px;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
 }
 
 .card p {
-    margin-bottom: 25px;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Kecil Progress bar */
+.progress-bar-small {
+    height: 4px;
+    background: #111;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.card.robotic .progress-fill { background: var(--neon-orange); box-shadow: 0 0 5px var(--neon-orange); }
+.card.gaming .progress-fill { background: var(--neon-pink); box-shadow: 0 0 5px var(--neon-pink); }
+
+.progress-text {
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 15px;
+    color: #888;
 }
 
 .card-link {
-    color: var(--neon-cyan);
+    color: #fff;
     text-decoration: none;
     font-family: var(--font-code);
     font-weight: bold;
+    font-size: 0.95rem;
+    transition: 0.3s;
 }
 
 .card-link:hover {
-    text-shadow: 0 0 8px var(--neon-cyan);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
 }
 
+/* Footer */
 footer {
+    border-top: 1px solid var(--border-dark);
+    padding: 30px 8%;
+    background: #030408;
     text-align: center;
-    padding: 30px;
+}
+
+.footer-content {
     font-family: var(--font-code);
-    color: var(--neon-dark);
-    border-top: 1px solid rgba(102, 252, 241, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.neon-green {
+    color: #39ff14;
+    text-shadow: 0 0 5px #39ff14;
+}
+
+.copyright {
+    color: #666;
+}
+
+/* Animasi */
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(15px, 9999px, 66px, 0); }
+    100% { clip: rect(34px, 9999px, 55px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(70px, 9999px, 105px, 0); }
+    100% { clip: rect(12px, 9999px, 85px, 0); }
+}
+
+@media(max-width: 900px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+    .navbar {
+        padding: 15px 5%;
+    }
+    h1 {
+        font-size: 2.8rem;
+    }
 }
